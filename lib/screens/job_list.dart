@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:job_management_app/screens/job_detail.dart';
 import 'package:job_management_app/service/api_service.dart';
-import '../models/job_model.dart'; // Ensure your Job model has fields: title, location, jobId, date
-
+import '../models/job_model.dart';
+import '../viewmodels/auth_viewmodel.dart'; 
+import 'package:provider/provider.dart';
 class JobList extends StatefulWidget {
   final String userId;
   final String token;
@@ -20,6 +21,7 @@ class _JobListState extends State<JobList> {
   String? error;
   int selectedMonth = DateTime.now().month;
   int selectedDay = DateTime.now().day;
+
 
   @override
   void initState() {
@@ -54,31 +56,11 @@ class _JobListState extends State<JobList> {
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
     int daysInMonth = DateUtils.getDaysInMonth(DateTime.now().year, selectedMonth);
+    
+  Provider.of<AuthViewModel>(context);
+  
 
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.deepPurpleAccent,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt, color: Colors.deepPurpleAccent), label: 'Tasks'),
-          BottomNavigationBarItem(
-            icon: Stack(children: [
-              Icon(Icons.notifications_none_outlined),
-              Positioned(
-                top: 0, right: 0,
-                child: CircleAvatar(
-                  radius: 7, backgroundColor: Colors.red,
-                  child: Text("3", style: TextStyle(color: Colors.white, fontSize: 10)),
-                ),
-              ),
-            ]), label: 'Alerts',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
-        ],
-        currentIndex: 1,
-        onTap: (idx) {},
-      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -159,7 +141,6 @@ class _JobListState extends State<JobList> {
                                 separatorBuilder: (_, __) => const SizedBox(height: 10),
                                 itemBuilder: (_, idx) {
                                   final job = filteredJobs[idx];
-                                  DateTime jobDate = DateTime.parse(job.date);
                                   return Card(
                                     color: Colors.white,
                                     elevation: 0,
@@ -205,7 +186,7 @@ class _JobListState extends State<JobList> {
                                                   padding: EdgeInsets.zero,
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail()));
+                                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JobDetail(ticketId: job.ticket_id!,token: widget.token,)));
                                                 },
                                                 child: const Text("View details", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
                                               ),

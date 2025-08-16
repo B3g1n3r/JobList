@@ -44,11 +44,17 @@ Future<List<dynamic>> getJobs(String userId, String token) async {
 
 
 
-  Future<Map<String, dynamic>> getJobDetail(String ticketId, String token) async {
-    final res = await http.get(
-      Uri.parse('$jobDetailBaseUrl$ticketId'),
-      headers: {"Authorization": "Bearer $token"},
-    );
-    return json.decode(res.body);
+Future<Map<String, dynamic>> getJobDetail(String ticketId, String token) async {
+  final res = await http.get(
+    Uri.parse('$jobDetailBaseUrl$ticketId'),
+    headers: {"Authorization": "Bearer $token"},
+  );
+
+  if (res.statusCode == 200) {
+    return json.decode(res.body)['data']; // return only "data"
+  } else {
+    throw Exception("Failed to fetch job details");
   }
+}
+
 }
