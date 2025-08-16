@@ -1,16 +1,32 @@
-# job_management_app
+# JobList App
 
-A new Flutter project.
+A Flutter app to manage job tasks with scheduling, job details, and more.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+<p float="left">
+  <img src="[https://github.com/username/JobList/blob/main/sample/Screenshot_1.png](https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333011.png)" width="200" />
+  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_2.png" width="200" />
+  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_3.png" width="200" />
+  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_4.png" width="200" />
+  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_1755333011.png" width="200" />
+</p>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+
+- View scheduled jobs by date and month.
+- Detailed job view with status updates.
+- Bottom navigation for Home, Tasks, Alerts, and Profile.
+- Video previews and attachments support.
+- User authentication with login screen.
+
+---
+
+## Installation
+
+1. Clone the repository:
+
