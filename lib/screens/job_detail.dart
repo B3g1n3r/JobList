@@ -21,6 +21,7 @@ class _JobDetailState extends State<JobDetail> {
     final data = await ApiService().getJobDetail(widget.ticketId, widget.token);
     return data['data'] ?? data;
   }
+
   String? value = "Scheduled";
 
   @override
@@ -38,7 +39,7 @@ class _JobDetailState extends State<JobDetail> {
           final data = snapshot.data!;
           final user = UserModel.fromJson(data['user_details']);
           final ticket = data['ticket'];
-
+          // value = data['data']['updates']['ticket_status'];
           return SafeArea(
             child: Column(
               children: [
@@ -95,7 +96,7 @@ class _JobDetailState extends State<JobDetail> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
 
                         // Profile Card
                         Card(
@@ -116,10 +117,8 @@ class _JobDetailState extends State<JobDetail> {
                                 CircleAvatar(
                                   radius: 36,
                                   backgroundColor: Colors.grey.shade300,
-                                  child: const Icon(
-                                    Icons.person,
-                                    size: 38,
-                                    color: Colors.white,
+                                  backgroundImage: const NetworkImage(
+                                    'https://imgs.search.brave.com/4pX8hfY-lMhmU3mWkuch5wiOcBgcTmRN-M123s7Fm0k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuaGl0cGF3LmNv/bS9oaXRwYXctMjAy/Mi9hcnRpY2xlL2Nv/bW1lbnQtZGFuaWVs/LnBuZw',
                                   ),
                                 ),
                                 const SizedBox(width: 20),
@@ -135,7 +134,6 @@ class _JobDetailState extends State<JobDetail> {
                                             fontSize: 18,
                                             color: Colors.purple),
                                       ),
-                                     
                                       Row(
                                         children: [
                                           const Icon(Icons.location_on,
@@ -162,7 +160,7 @@ class _JobDetailState extends State<JobDetail> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
 
                         // Installation Card
                         Card(
@@ -221,21 +219,39 @@ class _JobDetailState extends State<JobDetail> {
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.grey.withOpacity(0.13),
+                                        color: const Color.fromARGB(255, 139, 139, 139).withOpacity(0.13),
                                         blurRadius: 6,
                                         offset: const Offset(0, 2),
-                                      )
+                                      ),
                                     ],
                                   ),
                                   alignment: Alignment.center,
-                                  child: const Icon(Icons.play_circle_fill_outlined,
-                                      color: Colors.black54, size: 42),
-                                ),
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Image.network(
+                                          'https://m.media-amazon.com/images/I/41WifNcv-iL.jpg',
+                                          width: 62,
+                                          height: 62,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.play_circle_fill_outlined,
+                                        color:
+                                            Color.fromARGB(136, 223, 223, 223),
+                                        size: 42,
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
 
                         // Service Notes
                         Card(
@@ -281,7 +297,7 @@ class _JobDetailState extends State<JobDetail> {
                           ),
                         ),
 
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
 
                         // Technician Remarks
                         Container(
@@ -308,11 +324,12 @@ class _JobDetailState extends State<JobDetail> {
                                     fontWeight: FontWeight.w600),
                               ),
                               Spacer(),
-                              Icon(Icons.edit_note_outlined, color: Colors.black54, size: 30),
+                              Icon(Icons.edit_note_outlined,
+                                  color: Colors.black54, size: 30),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 10),
 
                         // Attachments
                         Container(
@@ -389,40 +406,47 @@ class _JobDetailState extends State<JobDetail> {
                             ],
                           ),
                           child: DropdownButtonHideUnderline(
-      child: DropdownButton<String>(
-        value: value,
-        icon: const Icon(Icons.arrow_drop_down, color: Color(0xFF7C4DFF), size: 28),
-        isExpanded: true,
-        items: const [
-          DropdownMenuItem(
-            value: "Scheduled",
-            child: Text(
-              "Scheduled",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-            ),
-          ),
-          DropdownMenuItem(
-            value: "In Progress",
-            child: Text(
-              "In Progress",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-            ),
-          ),
-          DropdownMenuItem(
-            value: "Completed",
-            child: Text(
-              "Completed",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
-            ),
-          ),
-        ],
-        onChanged: (val) {
-          setState(() {
-            value = val;
-          });
-        },
-      ),
-    ),
+                            child: DropdownButton<String>(
+                              value: value,
+                              icon: const Icon(Icons.arrow_drop_down,
+                                  color: Color(0xFF7C4DFF), size: 28),
+                              isExpanded: true,
+                              items: const [
+                                DropdownMenuItem(
+                                  value: "Scheduled",
+                                  child: Text(
+                                    "Scheduled",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: "In Progress",
+                                  child: Text(
+                                    "In Progress",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: "Completed",
+                                  child: Text(
+                                    "Completed",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                              onChanged: (val) {
+                                setState(() {
+                                  value = val;
+                                });
+                              },
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 14),
@@ -431,7 +455,8 @@ class _JobDetailState extends State<JobDetail> {
                           height: 52,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(255, 211, 179, 255),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 211, 179, 255),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),

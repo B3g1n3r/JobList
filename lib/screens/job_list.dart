@@ -19,8 +19,8 @@ class _JobListState extends State<JobList> {
   List<Job> filteredJobs = [];
   bool loading = true;
   String? error;
-  int selectedMonth = DateTime.now().month;
-  int selectedDay = DateTime.now().day;
+  int selectedMonth =6;
+  int selectedDay = 10;
 
 
   @override
@@ -55,7 +55,7 @@ class _JobListState extends State<JobList> {
       "Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
-    int daysInMonth = DateUtils.getDaysInMonth(DateTime.now().year, selectedMonth);
+  int daysInMonth = DateUtils.getDaysInMonth(DateTime.now().year, selectedMonth);
     
   Provider.of<AuthViewModel>(context);
   
@@ -112,9 +112,9 @@ class _JobListState extends State<JobList> {
                                         });
                                       },
                                       style: OutlinedButton.styleFrom(
-                                        backgroundColor: isSelected ? const Color(0xFFE7E4FB) : Colors.white,
+                                        backgroundColor: isSelected ? const Color.fromARGB(255, 192, 65, 215): Colors.white,
                                         side: BorderSide(
-                                          color: isSelected ? const Color(0xFFD1CAF5) : Colors.transparent
+                                          color: isSelected ? Colors.purple : Colors.transparent
                                         ),
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -122,7 +122,7 @@ class _JobListState extends State<JobList> {
                                       child: Text(
                                         day.toString(),
                                         style: TextStyle(
-                                          color: isSelected ? Colors.deepPurpleAccent : Colors.black
+                                          color: isSelected ? Colors.white : Colors.black
                                         ),
                                       ),
                                     );
@@ -156,9 +156,9 @@ class _JobListState extends State<JobList> {
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(job.productName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                                                Text(job.productName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
                                                 const SizedBox(height: 4),
-                                                Text(job.location, style: const TextStyle(fontSize: 13, color: Colors.black45)),
+                                                Text(job.location, style: const TextStyle(fontSize: 15, color: Colors.black45)),
                                                 const SizedBox(height: 4),
                                                 Row(
                                                   children: [
@@ -166,7 +166,7 @@ class _JobListState extends State<JobList> {
                                                     const SizedBox(width: 4),
                                                     Text(
                                                       job.time,
-                                                      style: const TextStyle(fontSize: 12, color: Color(0xFFA9A7B6)),
+                                                      style: const TextStyle(fontSize: 15, color: Color(0xFFA9A7B6)),
                                                     ),
                                                   ],
                                                 ),
@@ -175,7 +175,7 @@ class _JobListState extends State<JobList> {
                                           ),
                                           Column(
                                             children: [
-                                              Text(job.jobId, style: const TextStyle(fontSize: 12, color: Color(0xFFA9A7B6))),
+                                              Text(job.jobId, style: const TextStyle(fontSize: 15, color: Color(0xFFA9A7B6))),
                                               const SizedBox(height: 10),
                                               ElevatedButton(
                                                 style: ElevatedButton.styleFrom(

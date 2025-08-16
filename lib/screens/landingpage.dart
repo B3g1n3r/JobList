@@ -90,7 +90,7 @@ class _LandingPageState extends State<LandingPage> {
                     radius: 7,
                     backgroundColor: Colors.red,
                     child: Text(
-                      "3",
+                      "0",
                       style: TextStyle(color: Colors.white, fontSize: 10),
                     ),
                   ),
