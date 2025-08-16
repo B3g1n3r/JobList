@@ -7,11 +7,11 @@ A Flutter app to manage job tasks with scheduling, job details, and more.
 ## Screenshots
 
 <p float="left">
-  <img src="[https://github.com/username/JobList/blob/main/sample/Screenshot_1.png](https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333011.png)" width="200" />
-  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_2.png" width="200" />
-  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_3.png" width="200" />
-  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_4.png" width="200" />
-  <img src="https://github.com/username/JobList/blob/main/sample/Screenshot_1755333011.png" width="200" />
+  <img src="https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333011.png" width="200" />
+  <img src="https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333159.png" width="200" />
+  <img src="https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333188.png" width="200" />
+  <img src="https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333236.png" width="200" />
+  <img src="https://github.com/B3g1n3r/JobList/blob/main/sample/Screenshot_1755333256.png" width="200" />
 </p>
 
 ---
